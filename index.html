@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Отжимания за подписку</title>
+    <title>⚡Отжимания за подписку⚡</title>
     <style>
         :root {
             --bg-color: #0f0f0f;
@@ -101,11 +101,6 @@
             background: #ff6b81;
         }
 
-        .btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Стили панели управления */
         .admin-panel {
             margin-top: 30px;
             border-top: 1px solid var(--border-color);
@@ -142,11 +137,6 @@
             font-size: 15px;
             box-sizing: border-box;
             outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .admin-panel input:focus {
-            border-color: var(--accent-green);
         }
 
         .save-btn {
@@ -160,12 +150,6 @@
             font-size: 16px;
             cursor: pointer;
             margin-top: 10px;
-            transition: background 0.2s;
-        }
-
-        .save-btn:hover {
-            background: #26af5f;
-            color: var(--text-main);
         }
 
         .toggle-admin {
@@ -175,11 +159,6 @@
             margin-top: 25px;
             cursor: pointer;
             font-size: 12px;
-            transition: color 0.2s;
-        }
-
-        .toggle-admin:hover {
-            color: var(--text-muted);
         }
 
         .footer-note {
@@ -205,13 +184,10 @@
             <div class="counter-box" id="done-display">0</div>
         </div>
 
-        <!-- Твоя ссылка на TikTok -->
         <a href="https://www.tiktok.com/@dont.stop.push.up?_r=1&_t=ZS-98bNEKy032v" class="btn" target="_blank">Перейти в TikTok 🔥</a>
 
-        <!-- Кнопка вызова скрытой админки -->
         <button class="toggle-admin" onclick="toggleAdminPanel()">⚙️ Управление проектом</button>
         
-        <!-- Админ-панель -->
         <div class="admin-panel" id="adminPanel">
             <h3>Панель администратора</h3>
             
@@ -237,13 +213,9 @@
     </div>
 
     <script>
-        // ==========================================
-        // НАСТРОЙКИ ТВОЕГО РЕПОЗИТОРИЯ НА GITHUB
-        // ==========================================
-        const REPO_OWNER = "D1CHNSKY"; // Замени на свой ник на GitHub
-        const REPO_NAME = "Push up counter";     // Замени на название репозитория
+        const REPO_OWNER = "D1CHANSKY"; 
+        const REPO_NAME = "Push up counter";     
 
-        // Автозаполнение сохраненного токена при открытии панели
         document.addEventListener("DOMContentLoaded", () => {
             const savedToken = localStorage.getItem('my_gh_token');
             if (savedToken) {
@@ -251,13 +223,11 @@
             }
         });
 
-        // Функция переключения видимости админ-панели
         function toggleAdminPanel() {
             const panel = document.getElementById('adminPanel');
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
 
-        // Главная функция отправки данных на GitHub API
         async function updateGitHubData() {
             const token = document.getElementById('ghToken').value.trim();
             const subs = document.getElementById('inputSubs').value.trim();
@@ -273,13 +243,10 @@
                 return;
             }
 
-            // Сохраняем токен локально в браузере
             localStorage.setItem('my_gh_token', token);
 
-            // Рассчитываем долг
             const calculatedLeft = Math.max(0, Number(subs) - Number(done));
 
-            // Собираем свежий шаблон HTML-страницы со вшитыми новыми данными
             const updatedHtmlContent = `<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -352,7 +319,7 @@
             <div class="counter-box" id="done-display">${done}</div>
         </div>
 
-        <a href="https://www.tiktok.com/@D1CHANSKY" class="btn" target="_blank">Перейти в TikTok 🔥</a>
+        <a href="https://www.tiktok.com/@dont.stop.push.up?_r=1&_t=ZS-98bNEKy032v" class="btn" target="_blank">Перейти в TikTok 🔥</a>
 
         <button class="toggle-admin" onclick="toggleAdminPanel()">⚙️ Управление проектом</button>
         
@@ -385,9 +352,7 @@
             const panel = document.getElementById('adminPanel');
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
-        async function updateGitHubData() {
-            // Перенаправление на функцию обновления
-        }
+        async function updateGitHubData() {}
     </script>
 </body>
 </html>`;
@@ -395,7 +360,6 @@
             try {
                 alert('Отправка данных на GitHub...');
 
-                // 1. Получаем текущий SHA файла через GitHub API
                 const getFileResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/index.html`, {
                     headers: { "Authorization": `token ${token}` }
                 });
@@ -407,7 +371,6 @@
                 const fileJson = await getFileResponse.json();
                 const fileSha = fileJson.sha;
 
-                // 2. Отправляем обновленный файл обратно в репозиторий методом PUT
                 const updateResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/index.html`, {
                     method: "PUT",
                     headers: {
