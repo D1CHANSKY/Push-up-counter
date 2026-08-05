@@ -82,10 +82,6 @@
             transition: transform 0.2s;
         }
 
-        .stat-card:hover {
-            transform: translateY(-2px);
-        }
-
         .stat-card.full-width {
             grid-column: span 2;
             background: linear-gradient(135deg, rgba(255, 42, 95, 0.1), rgba(112, 0, 255, 0.1));
@@ -184,14 +180,16 @@
             margin: 20px auto 0 auto;
             background: none;
             border: none;
-            color: #444455;
-            font-size: 12px;
+            color: #888899;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
             transition: color 0.2s;
+            padding: 10px;
         }
 
         .admin-toggle-btn:hover {
-            color: var(--text-secondary);
+            color: var(--text-primary);
         }
 
         .admin-panel {
@@ -199,12 +197,6 @@
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid var(--border-color);
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .admin-title {
@@ -303,7 +295,7 @@
             Загрузка данных...
         </div>
 
-        <a href="https://www.tiktok.com/@dont.stop.push.up?_r=1&_t=ZS-98bNEKy032v" class="tiktok-btn" target="_blank">
+        <a href="https://www.tiktok.com/@ТВОЙ_НИК" class="tiktok-btn" target="_blank">
             <span>Перейти в TikTok</span> 🔥
         </a>
 
@@ -331,11 +323,11 @@
         </div>
 
         <div class="footer">
-            Push-Up Tracker
+            Tracker
         </div>
     </div>
 
-    <!-- Встроенный контейнер для хранения данных JSON -->
+    <!-- Контейнер для хранения данных -->
     <script id="stats-data" type="application/json">
     {
         "subs": 0,
@@ -345,10 +337,10 @@
 
     <script>
         // ==========================================
-        // НАСТРОЙКИ РЕПОЗИТОРИЯ (УКАЖИ СВОИ ДАННЫЕ)
+        // УКАЖИ СВОИ ДАННЫЕ GITHUB ЗДЕСЬ:
         // ==========================================
         const REPO_OWNER = "D1CHANSKY"; 
-        const REPO_NAME = "Push up counter";     
+        const REPO_NAME = "Push-up-counter";     
 
         document.addEventListener("DOMContentLoaded", () => {
             loadChallengeData();
@@ -404,7 +396,11 @@
 
         function toggleAdminPanel() {
             const panel = document.getElementById('adminPanel');
-            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+            if (panel.style.display === 'block') {
+                panel.style.display = 'none';
+            } else {
+                panel.style.display = 'block';
+            }
         }
 
         async function updateGitHubData() {
