@@ -3,140 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡Отжимания за подписку⚡</title>
+    <title>Отжимания за подписку</title>
     <style>
         :root {
-            --bg-color: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --inner-card: #252525;
-            --accent-red: #ff4757;
-            --accent-green: #2ed573;
-            --text-main: #ffffff;
-            --text-muted: #888888;
-            --border-color: #333333;
+            --bg-main: #0a0a0c;
+            --card-bg: #141419;
+            --card-inner: #1e1e26;
+            --accent-red: #ff2a5f;
+            --accent-green: #00f2fe;
+            --accent-purple: #7000ff;
+            --text-primary: #ffffff;
+            --text-secondary: #9a9aab;
+            --border-color: #2a2a36;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            text-align: center;
-            padding: 40px 20px;
-            margin: 0;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             min-height: 100vh;
-            box-sizing: border-box;
+            padding: 20px 15px;
+            overflow-x: hidden;
         }
 
-        .container {
+        .wrapper {
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
             background: var(--card-bg);
-            padding: 30px 20px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            border-radius: 28px;
+            padding: 28px 20px;
             border: 1px solid var(--border-color);
-            box-sizing: border-box;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8),
+                        0 0 30px rgba(255, 42, 95, 0.1);
+            position: relative;
         }
 
-        h1 {
-            font-size: 24px;
-            color: var(--accent-red);
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .subtitle {
-            font-size: 14px;
-            color: var(--text-muted);
+        .header {
+            text-align: center;
             margin-bottom: 25px;
         }
 
-        .card {
-            background: var(--inner-card);
-            padding: 20px;
-            border-radius: 16px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        h1 {
+            font-size: 26px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff2a5f, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
         }
 
-        .label {
-            font-size: 14px;
-            color: #b2bec3;
-            margin-bottom: 8px;
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--card-inner);
+            border-radius: 18px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .stat-card.full-width {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(255, 42, 95, 0.1), rgba(112, 0, 255, 0.1));
+            border: 1px solid rgba(255, 42, 95, 0.3);
+        }
+
+        .stat-title {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
             font-weight: 500;
         }
 
-        .counter-box {
-            font-size: 46px;
+        .stat-value {
+            font-size: 32px;
             font-weight: 800;
-            color: var(--accent-green);
-            line-height: 1;
+            line-height: 1.1;
         }
 
-        .counter-box.debt {
+        .stat-value.red {
             color: var(--accent-red);
+            text-shadow: 0 0 12px rgba(255, 42, 95, 0.4);
         }
 
-        .btn {
-            display: block;
+        .stat-value.green {
+            color: var(--accent-green);
+            text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+        }
+
+        .progress-section {
+            background: var(--card-inner);
+            padding: 16px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-bg {
             width: 100%;
-            background: var(--accent-red);
-            color: var(--text-main);
-            text-decoration: none;
-            padding: 16px 0;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 16px;
-            margin-top: 25px;
-            transition: background 0.2s, transform 0.1s;
-            box-sizing: border-box;
-            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+            height: 10px;
+            background: #0f0f14;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
         }
 
-        .btn:hover {
-            background: #ff6b81;
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-green));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .status-banner {
+            font-size: 13px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .tiktok-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, #ff2a5f, #7000ff);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(255, 42, 95, 0.3);
+            transition: opacity 0.2s, transform 0.1s;
+        }
+
+        .tiktok-btn:active {
+            transform: scale(0.98);
+        }
+
+        .admin-toggle-btn {
+            display: block;
+            margin: 20px auto 0 auto;
+            background: none;
+            border: none;
+            color: #444455;
+            font-size: 12px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .admin-toggle-btn:hover {
+            color: var(--text-secondary);
         }
 
         .admin-panel {
-            margin-top: 30px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 20px;
             display: none;
-            text-align: left;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            animation: fadeIn 0.3s ease-in-out;
         }
 
-        .admin-panel h3 {
-            font-size: 16px;
-            color: var(--text-main);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .admin-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
             margin-bottom: 15px;
             text-align: center;
         }
 
         .form-group {
             margin-bottom: 12px;
+            text-align: left;
         }
 
-        .admin-panel label {
+        .form-group label {
             display: block;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 4px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
         }
 
-        .admin-panel input {
+        .form-group input {
             width: 100%;
             padding: 12px;
-            background: #141414;
-            border: 1px solid #444;
-            color: var(--text-main);
-            border-radius: 8px;
-            font-size: 15px;
-            box-sizing: border-box;
+            background: #0d0d12;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 14px;
             outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-green);
         }
 
         .save-btn {
@@ -144,52 +247,70 @@
             padding: 14px;
             background: var(--accent-green);
             color: #000000;
+            font-weight: 800;
+            font-size: 15px;
             border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 16px;
+            border-radius: 12px;
             cursor: pointer;
             margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
         }
 
-        .toggle-admin {
-            background: none;
-            border: none;
-            color: #444;
+        .footer {
+            text-align: center;
             margin-top: 25px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .footer-note {
-            margin-top: 20px;
             font-size: 11px;
-            color: #444;
+            color: #333344;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>⚡ TikTok ⚡</h1>
-        <div class="subtitle">1 подписчик = 1 отжимание</div>
-        
-        <div class="card">
-            <div class="label">Осталось отжаться (долг):</div>
-            <div class="counter-box debt" id="left-display">0</div>
+    <div class="wrapper">
+        <div class="header">
+            <h1>Отжимания за подписку</h1>
+            <div class="subtitle">1 подписчик = 1 отжимание</div>
         </div>
 
-        <div class="card">
-            <div class="label">Уже сделано:</div>
-            <div class="counter-box" id="done-display">0</div>
+        <div class="stats-grid">
+            <div class="stat-card full-width">
+                <div class="stat-title">ОСТАЛОСЬ ОТЖАТЬСЯ (ДОЛГ)</div>
+                <div class="stat-value red" id="debtDisplay">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-title">Подписчики</div>
+                <div class="stat-value" id="subsDisplay">0</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-title">Сделано</div>
+                <div class="stat-value green" id="doneDisplay">0</div>
+            </div>
         </div>
 
-        <a href="https://www.tiktok.com/@dont.stop.push.up?_r=1&_t=ZS-98bNEKy032v" class="btn" target="_blank">Перейти в TikTok 🔥</a>
+        <div class="progress-section">
+            <div class="progress-header">
+                <span>Прогресс выполнения</span>
+                <span id="percentDisplay">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressBar"></div>
+            </div>
+        </div>
 
-        <button class="toggle-admin" onclick="toggleAdminPanel()">⚙️ Управление проектом</button>
-        
+        <div class="status-banner" id="statusBanner">
+            Загрузка данных...
+        </div>
+
+        <a href="https://www.tiktok.com/@dont.stop.push.up?_r=1&_t=ZS-98bNEKy032v" class="tiktok-btn" target="_blank">
+            <span>Перейти в TikTok</span> 🔥
+        </a>
+
+        <button class="admin-toggle-btn" onclick="toggleAdminPanel()">⚙️ Настройки</button>
+
         <div class="admin-panel" id="adminPanel">
-            <h3>Панель администратора</h3>
+            <div class="admin-title">Панель управления</div>
             
             <div class="form-group">
                 <label>GitHub Personal Access Token:</label>
@@ -197,31 +318,89 @@
             </div>
 
             <div class="form-group">
-                <label>Текущие подписчики в TikTok:</label>
+                <label>Всего подписчиков в TikTok:</label>
                 <input type="number" id="inputSubs" placeholder="0">
             </div>
 
             <div class="form-group">
-                <label>Сделано отжиманий:</label>
+                <label>Сколько отжиманий сделано:</label>
                 <input type="number" id="inputDone" placeholder="0">
             </div>
 
             <button class="save-btn" onclick="updateGitHubData()">Сохранить на GitHub 🚀</button>
         </div>
 
-        <div class="footer-note">System: D1CHANSKY Core</div>
+        <div class="footer">
+            Push-Up Tracker
+        </div>
     </div>
 
+    <!-- Встроенный контейнер для хранения данных JSON -->
+    <script id="stats-data" type="application/json">
+    {
+        "subs": 0,
+        "done": 0
+    }
+    </script>
+
     <script>
+        // ==========================================
+        // НАСТРОЙКИ РЕПОЗИТОРИЯ (УКАЖИ СВОИ ДАННЫЕ)
+        // ==========================================
         const REPO_OWNER = "D1CHANSKY"; 
         const REPO_NAME = "Push up counter";     
 
         document.addEventListener("DOMContentLoaded", () => {
+            loadChallengeData();
+            
             const savedToken = localStorage.getItem('my_gh_token');
             if (savedToken) {
                 document.getElementById('ghToken').value = savedToken;
             }
         });
+
+        function loadChallengeData() {
+            try {
+                const rawData = document.getElementById('stats-data').textContent;
+                const data = JSON.parse(rawData);
+
+                const subs = Number(data.subs) || 0;
+                const done = Number(data.done) || 0;
+                const debt = Math.max(0, subs - done);
+
+                document.getElementById('subsDisplay').innerText = subs;
+                document.getElementById('doneDisplay').innerText = done;
+                document.getElementById('debtDisplay').innerText = debt;
+
+                document.getElementById('inputSubs').value = subs;
+                document.getElementById('inputDone').value = done;
+
+                let percent = 0;
+                if (subs > 0) {
+                    percent = Math.min(100, Math.round((done / subs) * 100));
+                } else if (done > 0) {
+                    percent = 100;
+                }
+
+                document.getElementById('percentDisplay').innerText = percent + "%";
+                document.getElementById('progressBar').style.width = percent + "%";
+
+                const statusElement = document.getElementById('statusBanner');
+                if (debt === 0 && subs > 0) {
+                    statusElement.innerText = "🎉 Все отжимания сделаны! Ждем новых подписчиков!";
+                    statusElement.style.color = "#00f2fe";
+                } else if (debt > 0) {
+                    statusElement.innerText = `💪 Нужно сделать еще ${debt} отжиманий!`;
+                    statusElement.style.color = "#ff2a5f";
+                } else {
+                    statusElement.innerText = "🚀 Всё готово! Подписывайся в TikTok!";
+                    statusElement.style.color = "#9a9aab";
+                }
+
+            } catch (e) {
+                console.error("Ошибка при чтении данных:", e);
+            }
+        }
 
         function toggleAdminPanel() {
             const panel = document.getElementById('adminPanel');
@@ -245,131 +424,32 @@
 
             localStorage.setItem('my_gh_token', token);
 
-            const calculatedLeft = Math.max(0, Number(subs) - Number(done));
-
-            const updatedHtmlContent = `<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Челлендж: Отжимания за подписчиков | D1CHANSKY</title>
-    <style>
-        :root {
-            --bg-color: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --inner-card: #252525;
-            --accent-red: #ff4757;
-            --accent-green: #2ed573;
-            --text-main: #ffffff;
-            --text-muted: #888888;
-            --border-color: #333333;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            text-align: center;
-            padding: 40px 20px;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-        .container {
-            width: 100%;
-            max-width: 420px;
-            background: var(--card-bg);
-            padding: 30px 20px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-            border: 1px solid var(--border-color);
-            box-sizing: border-box;
-        }
-        h1 { font-size: 24px; color: var(--accent-red); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-        .subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 25px; }
-        .card { background: var(--inner-card); padding: 20px; border-radius: 16px; margin-bottom: 15px; border: 1px solid rgba(255, 255, 255, 0.05); }
-        .label { font-size: 14px; color: #b2bec3; margin-bottom: 8px; font-weight: 500; }
-        .counter-box { font-size: 46px; font-weight: 800; color: var(--accent-green); line-height: 1; }
-        .counter-box.debt { color: var(--accent-red); }
-        .btn { display: block; width: 100%; background: var(--accent-red); color: var(--text-main); text-decoration: none; padding: 16px 0; border-radius: 12px; font-weight: bold; font-size: 16px; margin-top: 25px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4); }
-        .admin-panel { margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px; display: none; text-align: left; }
-        .admin-panel h3 { font-size: 16px; color: var(--text-main); margin-bottom: 15px; text-align: center; }
-        .form-group { margin-bottom: 12px; }
-        .admin-panel label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
-        .admin-panel input { width: 100%; padding: 12px; background: #141414; border: 1px solid #444; color: var(--text-main); border-radius: 8px; font-size: 15px; box-sizing: border-box; outline: none; }
-        .save-btn { width: 100%; padding: 14px; background: var(--accent-green); color: #000000; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px; }
-        .toggle-admin { background: none; border: none; color: #444; margin-top: 25px; cursor: pointer; font-size: 12px; }
-        .footer-note { margin-top: 20px; font-size: 11px; color: #444; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>⚡ TikTok ⚡</h1>
-        <div class="subtitle">1 подписчик = 1 отжимание</div>
-        
-        <div class="card">
-            <div class="label">Осталось отжаться (долг):</div>
-            <div class="counter-box debt" id="left-display">${calculatedLeft}</div>
-        </div>
-
-        <div class="card">
-            <div class="label">Уже сделано:</div>
-            <div class="counter-box" id="done-display">${done}</div>
-        </div>
-
-        <a href="https://www.tiktok.com/@dont.stop.push.up?_r=1&_t=ZS-98bNEKy032v" class="btn" target="_blank">Перейти в TikTok 🔥</a>
-
-        <button class="toggle-admin" onclick="toggleAdminPanel()">⚙️ Управление проектом</button>
-        
-        <div class="admin-panel" id="adminPanel">
-            <h3>Панель администратора</h3>
-            <div class="form-group">
-                <label>GitHub Personal Access Token:</label>
-                <input type="password" id="ghToken" value="${token}">
-            </div>
-            <div class="form-group">
-                <label>Текущие подписчики в TikTok:</label>
-                <input type="number" id="inputSubs" value="${subs}">
-            </div>
-            <div class="form-group">
-                <label>Сделано отжиманий:</label>
-                <input type="number" id="inputDone" value="${done}">
-            </div>
-            <button class="save-btn" onclick="updateGitHubData()">Сохранить на GitHub 🚀</button>
-        </div>
-        <div class="footer-note">System: D1CHANSKY Core</div>
-    </div>
-    <script>
-        const REPO_OWNER = "${REPO_OWNER}";
-        const REPO_NAME = "${REPO_NAME}";
-        document.addEventListener("DOMContentLoaded", () => {
-            const savedToken = localStorage.getItem('my_gh_token');
-            if (savedToken) { document.getElementById('ghToken').value = savedToken; }
-        });
-        function toggleAdminPanel() {
-            const panel = document.getElementById('adminPanel');
-            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        }
-        async function updateGitHubData() {}
-    </script>
-</body>
-</html>`;
-
             try {
-                alert('Отправка данных на GitHub...');
+                alert('Связываемся с GitHub...');
 
                 const getFileResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/index.html`, {
                     headers: { "Authorization": `token ${token}` }
                 });
 
                 if (!getFileResponse.ok) {
-                    throw new Error('Не удалось получить файл с GitHub. Проверь правильность токена и имя репозитория.');
+                    throw new Error('Не удалось получить файл. Проверь логин, имя репозитория и токен.');
                 }
 
                 const fileJson = await getFileResponse.json();
                 const fileSha = fileJson.sha;
+                
+                const currentHtmlContent = decodeURIComponent(escape(atob(fileJson.content)));
+
+                const newJsonData = JSON.stringify({
+                    subs: Number(subs),
+                    done: Number(done)
+                }, null, 4);
+
+                const regex = /<script id="stats-data" type="application\/json">[\s\S]*?<\/script>/;
+                const updatedHtmlContent = currentHtmlContent.replace(
+                    regex, 
+                    `<script id="stats-data" type="application/json">\n${newJsonData}\n    </script>`
+                );
 
                 const updateResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/index.html`, {
                     method: "PUT",
@@ -378,14 +458,14 @@
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        message: `Auto-update challenge stats: subs=${subs}, done=${done}`,
+                        message: `Update stats: subs=${subs}, done=${done}`,
                         content: btoa(unescape(encodeURIComponent(updatedHtmlContent))),
                         sha: fileSha
                     })
                 });
 
                 if (updateResponse.ok) {
-                    alert('Успешно! Данные обновлены. Сайт пересоберется через 15-30 секунд.');
+                    alert('Успешно! Данные обновлены. Страница перезагрузится.');
                     location.reload();
                 } else {
                     const errorData = await updateResponse.json();
@@ -393,7 +473,7 @@
                 }
 
             } catch (error) {
-                alert('Произошла ошибка: ' + error.message);
+                alert('Ошибка: ' + error.message);
             }
         }
     </script>
