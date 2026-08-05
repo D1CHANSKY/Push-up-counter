@@ -11,7 +11,6 @@
             --card-inner: #1e1e26;
             --accent-red: #ff2a5f;
             --accent-green: #00f2fe;
-            --accent-purple: #7000ff;
             --text-primary: #ffffff;
             --text-secondary: #9a9aab;
             --border-color: #2a2a36;
@@ -21,7 +20,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
@@ -32,7 +31,6 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px 15px;
-            overflow-x: hidden;
         }
 
         .wrapper {
@@ -42,9 +40,7 @@
             border-radius: 28px;
             padding: 28px 20px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8),
-                        0 0 30px rgba(255, 42, 95, 0.1);
-            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 42, 95, 0.1);
         }
 
         .header {
@@ -79,7 +75,6 @@
             padding: 16px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
-            transition: transform 0.2s;
         }
 
         .stat-card.full-width {
@@ -101,15 +96,8 @@
             line-height: 1.1;
         }
 
-        .stat-value.red {
-            color: var(--accent-red);
-            text-shadow: 0 0 12px rgba(255, 42, 95, 0.4);
-        }
-
-        .stat-value.green {
-            color: var(--accent-green);
-            text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
-        }
+        .stat-value.red { color: var(--accent-red); text-shadow: 0 0 12px rgba(255, 42, 95, 0.4); }
+        .stat-value.green { color: var(--accent-green); text-shadow: 0 0 12px rgba(0, 242, 254, 0.4); }
 
         .progress-section {
             background: var(--card-inner);
@@ -141,7 +129,7 @@
             width: 0%;
             background: linear-gradient(90deg, var(--accent-red), var(--accent-green));
             border-radius: 10px;
-            transition: width 0.5s ease;
+            transition: width 0.4s ease;
         }
 
         .status-banner {
@@ -168,91 +156,57 @@
             font-weight: 700;
             border-radius: 16px;
             box-shadow: 0 8px 25px rgba(255, 42, 95, 0.3);
-            transition: opacity 0.2s, transform 0.1s;
-        }
-
-        .tiktok-btn:active {
-            transform: scale(0.98);
-        }
-
-        .admin-toggle-btn {
-            display: block;
-            margin: 20px auto 0 auto;
-            background: none;
-            border: none;
-            color: #888899;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: color 0.2s;
-            padding: 10px;
-        }
-
-        .admin-toggle-btn:hover {
-            color: var(--text-primary);
-        }
-
-        .admin-panel {
-            display: none;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .admin-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-primary);
             margin-bottom: 15px;
+        }
+
+        /* Удобная панель управления прямо на сайте */
+        .control-panel {
+            background: var(--card-inner);
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-top: 15px;
+        }
+
+        .control-panel h3 {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
             text-align: center;
         }
 
-        .form-group {
-            margin-bottom: 12px;
+        .input-group {
+            margin-bottom: 10px;
             text-align: left;
         }
 
-        .form-group label {
-            display: block;
+        .input-group label {
             font-size: 11px;
             color: var(--text-secondary);
-            margin-bottom: 5px;
+            display: block;
+            margin-bottom: 3px;
         }
 
-        .form-group input {
+        .input-group input {
             width: 100%;
-            padding: 12px;
-            background: #0d0d12;
+            padding: 10px;
+            background: #0a0a0c;
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: #ffffff;
+            border-radius: 8px;
+            color: white;
             font-size: 14px;
             outline: none;
         }
 
-        .form-group input:focus {
+        .input-group input:focus {
             border-color: var(--accent-green);
-        }
-
-        .save-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--accent-green);
-            color: #000000;
-            font-weight: 800;
-            font-size: 15px;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
         }
 
         .footer {
             text-align: center;
-            margin-top: 25px;
+            margin-top: 20px;
             font-size: 11px;
-            color: #333344;
+            color: #444455;
         }
     </style>
 </head>
@@ -283,7 +237,7 @@
 
         <div class="progress-section">
             <div class="progress-header">
-                <span>Прогресс выполнения</span>
+                <span>Прогресс</span>
                 <span id="percentDisplay">0%</span>
             </div>
             <div class="progress-bar-bg">
@@ -292,34 +246,26 @@
         </div>
 
         <div class="status-banner" id="statusBanner">
-            Загрузка данных...
+            Загрузка...
         </div>
 
-        <a href="https://www.tiktok.com/@ТВОЙ_НИК" class="tiktok-btn" target="_blank">
+        <a href="https://www.tiktok.com/@dont.stop.push.up?_r=1&_t=ZS-98bNEKy032v" class="tiktok-btn" target="_blank">
             <span>Перейти в TikTok</span> 🔥
         </a>
 
-        <button class="admin-toggle-btn" onclick="toggleAdminPanel()">⚙️ Настройки</button>
-
-        <div class="admin-panel" id="adminPanel">
-            <div class="admin-title">Панель управления</div>
+        <!-- УДОБНАЯ ПАНЕЛЬ ДЛЯ ИЗМЕНЕНИЯ ЦИФР -->
+        <div class="control-panel">
+            <h3>⚙️ Управление цифрами</h3>
             
-            <div class="form-group">
-                <label>GitHub Personal Access Token:</label>
-                <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx">
+            <div class="input-group">
+                <label>Сколько всего подписчиков:</label>
+                <input type="number" id="inputSubs" value="0" oninput="calculate()">
             </div>
 
-            <div class="form-group">
-                <label>Всего подписчиков в TikTok:</label>
-                <input type="number" id="inputSubs" placeholder="0">
+            <div class="input-group">
+                <label>Сколько отжиманий уже сделал:</label>
+                <input type="number" id="inputDone" value="0" oninput="calculate()">
             </div>
-
-            <div class="form-group">
-                <label>Сколько отжиманий сделано:</label>
-                <input type="number" id="inputDone" placeholder="0">
-            </div>
-
-            <button class="save-btn" onclick="updateGitHubData()">Сохранить на GitHub 🚀</button>
         </div>
 
         <div class="footer">
@@ -327,151 +273,57 @@
         </div>
     </div>
 
-    <!-- Контейнер для хранения данных -->
-    <script id="stats-data" type="application/json">
-    {
-        "subs": 0,
-        "done": 0
-    }
-    </script>
-
     <script>
-        // ==========================================
-        // УКАЖИ СВОИ ДАННЫЕ GITHUB ЗДЕСЬ:
-        // ==========================================
-        const REPO_OWNER = "D1CHANSKY"; 
-        const REPO_NAME = "Push-up-counter";     
+        // Функция автоматического подсчета и обновления экрана
+        function calculate() {
+            let subs = Number(document.getElementById('inputSubs').value) || 0;
+            let done = Number(document.getElementById('inputDone').value) || 0;
+            let debt = Math.max(0, subs - done);
 
-        document.addEventListener("DOMContentLoaded", () => {
-            loadChallengeData();
-            
-            const savedToken = localStorage.getItem('my_gh_token');
-            if (savedToken) {
-                document.getElementById('ghToken').value = savedToken;
+            // Вывод чисел
+            document.getElementById('subsDisplay').innerText = subs;
+            document.getElementById('doneDisplay').innerText = done;
+            document.getElementById('debtDisplay').innerText = debt;
+
+            // Расчет прогресса в процентах
+            let percent = 0;
+            if (subs > 0) {
+                percent = Math.min(100, Math.round((done / subs) * 100));
+            } else if (done > 0) {
+                percent = 100;
             }
-        });
 
-        function loadChallengeData() {
-            try {
-                const rawData = document.getElementById('stats-data').textContent;
-                const data = JSON.parse(rawData);
+            document.getElementById('percentDisplay').innerText = percent + "%";
+            document.getElementById('progressBar').style.width = percent + "%";
 
-                const subs = Number(data.subs) || 0;
-                const done = Number(data.done) || 0;
-                const debt = Math.max(0, subs - done);
-
-                document.getElementById('subsDisplay').innerText = subs;
-                document.getElementById('doneDisplay').innerText = done;
-                document.getElementById('debtDisplay').innerText = debt;
-
-                document.getElementById('inputSubs').value = subs;
-                document.getElementById('inputDone').value = done;
-
-                let percent = 0;
-                if (subs > 0) {
-                    percent = Math.min(100, Math.round((done / subs) * 100));
-                } else if (done > 0) {
-                    percent = 100;
-                }
-
-                document.getElementById('percentDisplay').innerText = percent + "%";
-                document.getElementById('progressBar').style.width = percent + "%";
-
-                const statusElement = document.getElementById('statusBanner');
-                if (debt === 0 && subs > 0) {
-                    statusElement.innerText = "🎉 Все отжимания сделаны! Ждем новых подписчиков!";
-                    statusElement.style.color = "#00f2fe";
-                } else if (debt > 0) {
-                    statusElement.innerText = `💪 Нужно сделать еще ${debt} отжиманий!`;
-                    statusElement.style.color = "#ff2a5f";
-                } else {
-                    statusElement.innerText = "🚀 Всё готово! Подписывайся в TikTok!";
-                    statusElement.style.color = "#9a9aab";
-                }
-
-            } catch (e) {
-                console.error("Ошибка при чтении данных:", e);
-            }
-        }
-
-        function toggleAdminPanel() {
-            const panel = document.getElementById('adminPanel');
-            if (panel.style.display === 'block') {
-                panel.style.display = 'none';
+            // Текст статуса
+            let statusElement = document.getElementById('statusBanner');
+            if (debt === 0 && subs > 0) {
+                statusElement.innerText = "🎉 Все отжимания сделаны! Красавчик!";
+                statusElement.style.color = "#00f2fe";
+            } else if (debt > 0) {
+                statusElement.innerText = `💪 Осталось сделать еще ${debt} отжиманий!`;
+                statusElement.style.color = "#ff2a5f";
             } else {
-                panel.style.display = 'block';
+                statusElement.innerText = "🚀 Введи текущие данные в панели ниже!";
+                statusElement.style.color = "#9a9aab";
             }
+
+            // Сохраняем в память телефона, чтобы цифры не сбрасывались при обновлении страницы
+            localStorage.setItem('saved_subs', subs);
+            localStorage.setItem('saved_done', done);
         }
 
-        async function updateGitHubData() {
-            const token = document.getElementById('ghToken').value.trim();
-            const subs = document.getElementById('inputSubs').value.trim();
-            const done = document.getElementById('inputDone').value.trim();
+        // Автозагрузка сохраненных цифр при открытии сайта
+        window.onload = function() {
+            let savedSubs = localStorage.getItem('saved_subs');
+            let savedDone = localStorage.getItem('saved_done');
 
-            if (!token) {
-                alert('Пожалуйста, введи свой GitHub Токен!');
-                return;
-            }
+            if (savedSubs !== null) document.getElementById('inputSubs').value = savedSubs;
+            if (savedDone !== null) document.getElementById('inputDone').value = savedDone;
 
-            if (subs === "" || done === "") {
-                alert('Заполни оба числовых поля!');
-                return;
-            }
-
-            localStorage.setItem('my_gh_token', token);
-
-            try {
-                alert('Связываемся с GitHub...');
-
-                const getFileResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/index.html`, {
-                    headers: { "Authorization": `token ${token}` }
-                });
-
-                if (!getFileResponse.ok) {
-                    throw new Error('Не удалось получить файл. Проверь логин, имя репозитория и токен.');
-                }
-
-                const fileJson = await getFileResponse.json();
-                const fileSha = fileJson.sha;
-                
-                const currentHtmlContent = decodeURIComponent(escape(atob(fileJson.content)));
-
-                const newJsonData = JSON.stringify({
-                    subs: Number(subs),
-                    done: Number(done)
-                }, null, 4);
-
-                const regex = /<script id="stats-data" type="application\/json">[\s\S]*?<\/script>/;
-                const updatedHtmlContent = currentHtmlContent.replace(
-                    regex, 
-                    `<script id="stats-data" type="application/json">\n${newJsonData}\n    </script>`
-                );
-
-                const updateResponse = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/index.html`, {
-                    method: "PUT",
-                    headers: {
-                        "Authorization": `token ${token}`,
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        message: `Update stats: subs=${subs}, done=${done}`,
-                        content: btoa(unescape(encodeURIComponent(updatedHtmlContent))),
-                        sha: fileSha
-                    })
-                });
-
-                if (updateResponse.ok) {
-                    alert('Успешно! Данные обновлены. Страница перезагрузится.');
-                    location.reload();
-                } else {
-                    const errorData = await updateResponse.json();
-                    alert('Ошибка от GitHub: ' + errorData.message);
-                }
-
-            } catch (error) {
-                alert('Ошибка: ' + error.message);
-            }
-        }
+            calculate();
+        };
     </script>
 </body>
 </html>
